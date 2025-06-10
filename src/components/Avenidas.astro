@@ -1,0 +1,299 @@
+---
+// Componente Avenidas.astro
+// Ícones SVG inline (lucide icons)
+const icons = {
+  scale: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>`,
+  trendingUp: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.5-8.5-5 5L2 7"/><path d="M16 7h6v6"/><path d="M14 19v-8.5L22 7"/></svg>`,
+  zap: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>`,
+  target: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
+  arrowRight: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`,
+  shield: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>`,
+  route: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>`
+};
+
+// Função para abrir WhatsApp
+const openWhatsApp = (message) => {
+  window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(message)}`, '_blank');
+};
+---
+
+<section class="py-24 px-4 bg-slate-950 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-transparent to-orange-500/5"></div>
+  
+  {/* Road/Path Background Effect */}
+  <div class="absolute inset-0 opacity-10">
+    <svg viewBox="0 0 1200 800" class="w-full h-full">
+      <path
+        d="M 0,600 Q 300,500 600,400 Q 900,300 1200,200"
+        stroke="url(#roadGradient)"
+        stroke-width="40"
+        fill="none"
+        stroke-dasharray="20,10"
+      />
+      <defs>
+        <linearGradient id="roadGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="#f97316" stop-opacity="0.3" />
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+  
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 text-blue-300 px-6 py-3 rounded-full mb-8">
+        <div class="w-5 h-5" set:html={icons.route} />
+        <span class="font-medium">Integratividade</span>
+      </div>
+      
+      <h2 class="text-5xl md:text-6xl font-bold mb-8 leading-tight">
+        <span class="bg-gradient-to-r from-white via-blue-200 to-orange-300 bg-clip-text text-transparent">
+          A Tucont resolve as duas principais avenidas: a Empreendedora e a Legal.
+        </span>
+      </h2>
+      
+      <p class="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
+        <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent font-bold text-shadow-glow">
+          Nossa revolução
+        </span>
+        : Unir compliance perfeito, com crescimento estratégico. 
+        Porque sua empresa merece mais que apenas "estar em dia" com o fisco.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-16 mb-16 relative">
+      {/* Connecting Road Element */}
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 hidden lg:block">
+        <div class="w-32 h-2 bg-gradient-to-r from-orange-500/30 via-yellow-400/50 to-blue-500/30 rounded-full blur-sm"></div>
+        <div class="w-24 h-1 bg-gradient-to-r from-orange-400 via-yellow-300 to-blue-400 rounded-full mt-1 mx-auto"></div>
+      </div>
+
+      {/* Avenida Empreendedora - Left side (start of journey) */}
+      <div class="group relative order-1">
+        {/* Rótulo da Avenida */}
+        <div class="absolute -top-3 left-6 z-10">
+          <div class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2 group-hover:from-yellow-400 group-hover:to-orange-500 group-hover:text-slate-900 transition-all duration-300">
+            <div class="w-4 h-4" set:html={icons.trendingUp} />
+            <span class="group-hover:hidden">Avenida Empreendedora</span>
+            <span class="hidden group-hover:block">Nosso Grande Diferencial</span>
+          </div>
+        </div>
+
+        <div class="absolute inset-0 bg-gradient-to-r from-orange-500/30 to-red-500/30 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+        <div class="relative bg-slate-900/80 backdrop-blur-xl border border-orange-400/50 rounded-3xl p-8 shadow-2xl hover:shadow-orange-500/30 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 h-full">
+          
+          <div class="flex items-center gap-4 mb-6 mt-4">
+            <div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <div class="w-8 h-8 text-white" set:html={icons.trendingUp} />
+            </div>
+            <div>
+              <h3 class="text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-300 bg-clip-text text-transparent">
+                Jornada Empreendedora
+              </h3>
+              <div class="flex items-center gap-2 text-orange-300 text-sm">
+                <div class="w-4 h-4" set:html={icons.target} />
+                <span>Você em boa companhia</span>
+              </div>
+            </div>
+          </div>
+          
+          <h4 class="text-xl font-semibold text-white mb-4">
+            Planos, estratégia e operação
+          </h4>
+          
+          <p class="text-orange-200 mb-6 leading-relaxed">
+            Da ideia a operação, nós vamos com você. Nossa tecnologia é proprietária, simples de usar, os materiais e frameworks aplicáveis imediatamente.
+          </p>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-slate-300">
+              <div class="w-2 h-2 bg-orange-400 rounded-full"></div>
+              <span>Estruturação e consultoria, do MVP ao Go-to-Market</span>
+            </li>
+            <li class="flex items-center gap-3 text-slate-300">
+              <div class="w-2 h-2 bg-orange-400 rounded-full"></div>
+              <span>Frameworks de evolução validados</span>
+            </li>
+            <li class="flex items-center gap-3 text-slate-300">
+              <div class="w-2 h-2 bg-orange-400 rounded-full"></div>
+              <span>Software para vendas, emissão de notas e financeiro</span>
+            </li>
+            <li class="flex items-center gap-3 text-slate-300">
+              <div class="w-2 h-2 bg-orange-400 rounded-full"></div>
+              <span>Mentoria 1:1 especializada</span>
+            </li>
+          </ul>
+
+          <button 
+            onclick={() => openWhatsApp('Quero conhecer a Avenida Empreendedora - jornada estratégica')}
+            class="w-full flex items-center justify-center bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white rounded-xl py-4 font-semibold text-lg shadow-lg"
+          >
+            Ver soluções desta avenida
+            <div class="w-5 h-5 ml-2" set:html={icons.arrowRight} />
+          </button>
+        </div>
+      </div>
+
+      {/* Avenida Legal - Right side (destination) */}
+      <div class="group relative order-2">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+        <div class="relative bg-slate-900/80 backdrop-blur-xl border border-blue-400/30 rounded-3xl p-8 shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 h-full">
+          
+          {/* Rótulo da Avenida */}
+          <div class="absolute -top-3 left-6">
+            <div class="bg-gradient-to-r from-blue-500 to-cyan-400 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
+              <div class="w-4 h-4" set:html={icons.shield} />
+              Avenida Legal
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 mb-6 mt-4">
+            <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <div class="w-8 h-8 text-white" set:html={icons.scale} />
+            </div>
+            <div>
+              <h3 class="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                Esteira automatizada
+              </h3>
+              <div class="flex items-center gap-2 text-blue-300 text-sm">
+                <div class="w-4 h-4" set:html={icons.zap} />
+                <span>100% Automatizado</span>
+              </div>
+            </div>
+          </div>
+          
+          <h4 class="text-xl font-semibold text-white mb-4">
+            Conformidade fiscal e operacional
+          </h4>
+          
+          <p class="text-blue-200 mb-6 leading-relaxed">
+            Nossa IA cuida de toda burocracia fiscal: impostos, folha, regularização. 
+            Deixando você livre para focar no que realmente importa.
+          </p>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-slate-300">
+              <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+              <span>Emissão automática de notas fiscais</span>
+            </li>
+            <li class="flex items-center gap-3 text-slate-300">
+              <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+              <span>Compliance fiscal em tempo real</span>
+            </li>
+            <li class="flex items-center gap-3 text-slate-300">
+              <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+              <span>Regularização inteligente</span>
+            </li>
+            <li class="flex items-center gap-3 text-slate-300">
+              <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+              <span>Relatórios automatizados</span>
+            </li>
+          </ul>
+
+          <button 
+            onclick={() => openWhatsApp('Quero conhecer a Avenida Legal - automação de obrigações')}
+            class="w-full flex items-center justify-center bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-xl py-4 font-semibold text-lg"
+          >
+            Ver soluções desta avenida
+            <div class="w-5 h-5 ml-2" set:html={icons.arrowRight} />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    {/* Texto explicativo antes do CTA */}
+    <div class="text-center mb-8">
+      <p class="text-lg text-slate-300 max-w-4xl mx-auto leading-relaxed">
+        Enquanto outros cuidam apenas do fisco, nós revolucionamos. 
+        Navegue pelas avenidas que transformam completamente o seu negócio.
+      </p>
+    </div>
+
+    {/* CTA Final */}
+    <div class="text-center">
+      <button 
+        onclick={() => openWhatsApp('Quero as duas avenidas integradas')}
+        class="inline-flex items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500 hover:from-blue-600 hover:via-purple-600 hover:to-orange-600 text-white px-10 py-5 text-xl rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
+      >
+        Quero as duas avenidas integradas
+      </button>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  /* Adicionando alguns estilos globais para garantir a consistência */
+  .text-shadow-glow {
+    text-shadow: 0 0 4px rgba(0, 204, 255, 0.4), 
+                 0 0 8px rgba(94, 165, 255, 0.3);
+  }
+
+  /* Estilos para os links/botões */
+  button {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  /* Efeito de hover para os cards */
+  .group:hover .group-hover\:scale-110 {
+    transform: scale(1.1);
+  }
+
+  /* Efeitos de transição */
+  .transition-transform {
+    transition-property: transform;
+  }
+
+  .transition-all {
+    transition-property: all;
+  }
+
+  .duration-300 {
+    transition-duration: 300ms;
+  }
+
+  .duration-500 {
+    transition-duration: 500ms;
+  }
+
+  /* Efeito de backdrop blur */
+  .backdrop-blur-xl {
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  /* Ajustes para responsividade */
+  @media (max-width: 768px) {
+    .text-5xl {
+      font-size: 2.5rem;
+      line-height: 1.2;
+    }
+
+    .text-6xl {
+      font-size: 3rem;
+      line-height: 1.2;
+    }
+
+    .py-24 {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+</style>
+
+<script>
+  // Função para abrir WhatsApp (executada no client-side)
+  function openWhatsApp(message) {
+    window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(message)}`, '_blank');
+  }
+
+  // Adiciona os event listeners após o carregamento da página
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-whatsapp-message]').forEach(button => {
+      button.addEventListener('click', () => {
+        const message = button.getAttribute('data-whatsapp-message');
+        openWhatsApp(message);
+      });
+    });
+  });
+</script>

@@ -1,0 +1,166 @@
+---
+import { Image } from 'astro:assets';
+import logoTucont from '../images/tucont.svg';
+
+const menuItems = [
+  {
+    label: 'Início',
+    sectionId: 'hero'
+  },
+  {
+    label: 'Soluções',
+    sectionId: 'solucoes'
+  },
+  {
+    label: 'Planos',
+    sectionId: 'planos'
+  },
+  {
+    label: 'Sou contador',
+    sectionId: 'agentes'
+  },
+  {
+    label: 'Contato',
+    sectionId: 'contato'
+  }
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+  <!-- Barra colorida no topo (opcional, como no exemplo original) -->
+  <div class="h-1.5 w-full bg-gradient-to-r from-[#FF7B00] via-[#FFD700] to-[#122687] animate-gradient-x"></div>
+  
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center">
+        <Image src={logoTucont} alt="Tucont" width={160} height={48} class="h-12" />
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center space-x-8">
+        {menuItems.map((item) => (
+          <button 
+            onclick={`scrollToSection('${item.sectionId}')`}
+            class="text-white hover:text-orange-400 transition-colors font-medium"
+          >
+            {item.label}
+          </button>
+        ))}
+      </nav>
+
+      <!-- Desktop Actions -->
+      <div class="hidden lg:flex items-center gap-4">
+        <a href="/solucoes">
+          <button 
+            class="px-4 py-2 border border-orange-500 text-orange-500 bg-transparent backdrop-blur-sm hover:bg-orange-500/10 hover:border-orange-400 hover:text-orange-400 transition-all duration-300 rounded-lg"
+          >
+            Ver todas as soluções
+          </button>
+        </a>
+        <button 
+          onclick="openWhatsApp()" 
+          class="px-4 py-2 bg-orange-500/20 border border-orange-500 text-orange-500 backdrop-blur-sm hover:bg-orange-500/30 hover:border-orange-400 hover:text-orange-400 hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 rounded-lg"
+        >
+          Acessar
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        class="lg:hidden p-2 text-white"
+        onclick="toggleMobileMenu()"
+      >
+        <svg id="mobileMenuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="lg:hidden hidden py-4 border-t border-slate-700">
+      <div class="space-y-4">
+        {menuItems.map((item) => (
+          <button 
+            onclick={`scrollToSection('${item.sectionId}')`}
+            class="block text-white hover:text-orange-400 w-full text-left px-2 py-2"
+          >
+            {item.label}
+          </button>
+        ))}
+        <div class="flex gap-4 pt-4">
+          <a href="/solucoes" class="flex-1">
+            <button 
+              class="w-full px-4 py-2 border border-orange-500 text-orange-500 bg-transparent backdrop-blur-sm hover:bg-orange-500/10 rounded-lg"
+            >
+              Ver soluções
+            </button>
+          </a>
+          <button 
+            onclick="openWhatsApp()" 
+            class="flex-1 px-4 py-2 bg-orange-500/20 border border-orange-500 text-orange-500 backdrop-blur-sm hover:bg-orange-500/30 rounded-lg"
+          >
+            Acessar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  // Função para rolar suavemente para seções
+  function scrollToSection(sectionId) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    // Fechar menu mobile se estiver aberto
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+      toggleMobileMenu();
+    }
+  }
+
+  // Função para abrir WhatsApp
+  function openWhatsApp() {
+    window.open(`https://wa.me/5511999999999?text=${encodeURIComponent("Olá! Quero conhecer a Tucont")}`, '_blank');
+  }
+
+  // Função para alternar menu mobile
+  function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuIcon = document.getElementById('mobileMenuIcon');
+    
+    if (mobileMenu && mobileMenuIcon) {
+      mobileMenu.classList.toggle('hidden');
+      
+      // Alternar entre ícone de menu e X
+      if (mobileMenu.classList.contains('hidden')) {
+        mobileMenuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+      } else {
+        mobileMenuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+      }
+    }
+  }
+</script>
+
+<style is:global>
+  /* Animação do gradiente na barra superior */
+  @keyframes gradient-x {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 8s ease infinite;
+  }
+</style>

@@ -1,0 +1,20 @@
+{
+  "name": "tucont",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.0.3",
+    "@astrojs/vercel": "^8.0.4",
+    "@vercel/speed-insights": "^1.0.2",
+    "astro": "^5.7.11",
+    "preact": "^10.26.5",
+    "tailwindcss": "^3.3.7"
+  }
+}

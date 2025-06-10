@@ -1,0 +1,342 @@
+---
+// src/components/Features.astro
+
+const icons = {
+  arrowRight: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`,
+  zap: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>`
+};
+
+const businessSteps = [
+  {
+    id: 0,
+    title: "Criar e Validar",
+    image: "/scrollingSession/41fcb3b9-a11b-4ca7-aac8-3e452f41999b.png",
+    text: "Transforme sua ideia em realidade. Validamos seu modelo de negócio, definimos a estrutura legal ideal e orientamos os primeiros passos para criar uma base sólida.",
+    cta: "Começar minha jornada",
+    whatsappMessage: "Quero ajuda com: Criar e Validar meu negócio"
+  },
+  {
+    id: 1,
+    title: "Regularizar",
+    image: "/scrollingSession/186878a1-99b4-4f84-877a-85bf6fb1e737.png",
+    text: "CNPJ em 24h com orientação completa. Cuidamos de toda burocracia legal, escolhemos o melhor enquadramento tributário e deixamos sua empresa 100% regularizada.",
+    cta: "Regularizar agora",
+    whatsappMessage: "Quero ajuda com: Regularizar minha empresa"
+  },
+  {
+    id: 2,
+    title: "Vender e Emitir Notas",
+    image: "/scrollingSession/f32255a9-8411-4496-88d0-12256b5cadb3.png",
+    text: "Plataforma completa para vendas e emissão automática de notas fiscais. Simplifique sua operação e foque no que realmente importa: crescer.",
+    cta: "Automatizar vendas",
+    whatsappMessage: "Quero ajuda com: Vender e Emitir Notas"
+  },
+  {
+    id: 3,
+    title: "Cuidar do Fisco",
+    image: "/scrollingSession/3cff2625-e342-4add-b38e-c92bcc0db520.png",
+    text: "Compliance fiscal automatizado com IA. Nossa tecnologia cuida de todas as obrigações fiscais, relatórios e deadlines para você dormir tranquilo.",
+    cta: "Automatizar fisco",
+    whatsappMessage: "Quero ajuda com: Cuidar do Fisco"
+  },
+  {
+    id: 4,
+    title: "Tracionar e Evoluir",
+    image: "/scrollingSession/05c65c48-85aa-4a2b-ad4b-75e4beea5a17.png",
+    text: "Plataforma de Jornada Empreendedora, Frameworks Validados para crescimento sustentável e Mentoria estratégica. Destravamos seu potencial empreendedor com orientação especializada.",
+    cta: "Acelerar crescimento",
+    whatsappMessage: "Quero ajuda com: Tracionar e Evoluir meu negócio"
+  }
+];
+---
+
+<section id="growth-models-section" class="relative bg-slate-950" style={`height: ${100 + (businessSteps.length) * 100}vh`}>
+  <div class="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-slate-950/50 to-orange-950/20"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-12 lg:mb-16">
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 lg:mb-8 leading-tight">
+          <span class="bg-gradient-to-r from-white via-blue-200 to-orange-300 bg-clip-text text-transparent">
+            Em qual momento seu negócio está?
+          </span>
+        </h2>
+        <p class="text-lg md:text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
+          Momento de <span class="font-semibold text-blue-400">Criar e Testar</span>, 
+          <span class="font-semibold text-orange-400"> Regularizar</span>, 
+          <span class="font-semibold text-blue-400"> Vender e Emitir Notas</span>, 
+          <span class="font-semibold text-orange-400"> Cuidar do Fisco</span>, 
+          <span class="font-semibold text-blue-400"> Tracionar e Evoluir</span>.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="relative h-80 md:h-96 order-2 lg:order-1">
+          {businessSteps.map((step, index) => (
+            <div
+              key={step.id}
+              id={`step-${step.id}`}
+              class={`absolute inset-0 transition-all duration-500 ease-out ${
+                index === 0 
+                  ? 'opacity-100 scale-100 translate-x-0' 
+                  : 'opacity-0 scale-95 translate-x-8'
+              }`}
+              data-step-index={index}
+            >
+              <div class="relative w-full h-full">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-orange-500/10 rounded-2xl blur-2xl"></div>
+                <div class={`relative w-full h-full rounded-2xl shadow-2xl overflow-hidden ${
+                  step.id === 4 ? 'backdrop-blur-md bg-white/10 border border-white/20' : ''
+                }`}>
+                  <img 
+                    src={step.image} 
+                    alt={step.title}
+                    class="relative w-full h-full object-cover rounded-2xl"
+                    style={{
+                      boxShadow: '0 0 40px rgba(59, 130, 246, 0.2), 0 0 80px rgba(249, 115, 22, 0.1)'
+                    }}
+                    loading="lazy"
+                  />
+                  {step.id === 4 && (
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 rounded-2xl"></div>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="space-y-8 relative order-1 lg:order-2">
+          {businessSteps.map((step, index) => (
+            <div
+              key={step.id}
+              id={`text-step-${step.id}`}
+              class={`transition-all duration-500 ease-out ${
+                index === 0 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 translate-x-8 absolute inset-0'
+              }`}
+              data-step-index={index}
+            >
+              <h3 class="text-3xl lg:text-4xl font-bold text-white mb-4 lg:mb-6">
+                {step.title}
+              </h3>
+              <p class="text-lg lg:text-xl text-slate-300 leading-relaxed mb-6 lg:mb-8">
+                {step.text}
+              </p>
+              <button
+                data-whatsapp-message={step.whatsappMessage}
+                class="bg-gradient-to-r from-blue-500 to-orange-500 hover:from-blue-600 hover:to-orange-600 text-white font-semibold px-6 py-3 lg:px-8 lg:py-4 rounded-full shadow-2xl shadow-blue-500/25 transition-all duration-300 hover:scale-105 flex items-center"
+              >
+                {step.cta}
+                <span class="w-4 h-4 lg:w-5 lg:h-5 ml-2" set:html={icons.arrowRight} />
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-12 lg:mt-16 space-x-3">
+        {businessSteps.map((step, index) => (
+          <div
+            key={index}
+            class={`w-2 h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
+              index === 0 
+                ? 'bg-gradient-to-r from-blue-500 to-orange-500 scale-125' 
+                : 'bg-slate-600 hover:bg-slate-500 cursor-pointer'
+            }`}
+            data-step-index={index}
+            role="button"
+            tabIndex={0}
+            aria-label={`Ir para etapa ${index + 1}: ${step.title}`}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 right-0 bg-slate-950/95 backdrop-blur-xl border-t border-slate-800/30 py-12 lg:py-16">
+    <div class="max-w-3xl mx-auto text-center px-4 sm:px-6">
+      <h3 class="text-xl lg:text-2xl font-bold text-white mb-4">
+        Não sabe em qual momento está?
+      </h3>
+      <p class="text-slate-300 mb-6 text-sm lg:text-base">
+        Nossa IA analisa seu perfil e recomenda o momento ideal para seu negócio atual.
+      </p>
+      <button 
+        data-whatsapp-message="Quero descobrir em qual momento meu negócio está"
+        class="bg-gradient-to-r from-blue-600 via-blue-700 to-orange-600 hover:from-blue-700 hover:via-blue-800 hover:to-orange-700 text-white px-6 py-3 lg:px-8 lg:py-4 text-base lg:text-lg rounded-full shadow-2xl hover:shadow-blue-500/20 transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto"
+      >
+        <span class="w-4 h-4 lg:w-5 lg:h-5 mr-2" set:html={icons.zap} />
+        Descobrir meu momento ideal
+      </button>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  // Estado e configurações
+  let activeStep = 0;
+  const stepCount = 5;
+  const stepHeight = window.innerHeight;
+  let isScrolling = false;
+  let scrollTimeout = null;
+
+  // Função para atualizar o step ativo
+  function updateActiveStep(newStep) {
+    if (newStep === activeStep || newStep < 0 || newStep >= stepCount) return;
+    
+    // Atualiza indicadores
+    document.querySelectorAll('[data-step-index]').forEach(indicator => {
+      const stepIndex = parseInt(indicator.getAttribute('data-step-index'));
+      if (indicator.classList.contains('w-2') || indicator.classList.contains('w-3')) {
+        indicator.classList.toggle('bg-gradient-to-r', stepIndex === newStep);
+        indicator.classList.toggle('from-blue-500', stepIndex === newStep);
+        indicator.classList.toggle('to-orange-500', stepIndex === newStep);
+        indicator.classList.toggle('scale-125', stepIndex === newStep);
+        indicator.classList.toggle('bg-slate-600', stepIndex !== newStep);
+        indicator.classList.toggle('hover:bg-slate-500', stepIndex !== newStep);
+      }
+    });
+
+    // Atualiza imagens
+    document.querySelectorAll('[id^="step-"]').forEach(element => {
+      const stepIndex = parseInt(element.getAttribute('data-step-index'));
+      
+      element.classList.toggle('opacity-100', stepIndex === newStep);
+      element.classList.toggle('scale-100', stepIndex === newStep);
+      element.classList.toggle('translate-x-0', stepIndex === newStep);
+      element.classList.toggle('opacity-0', stepIndex !== newStep);
+      element.classList.toggle('scale-95', stepIndex !== newStep);
+      
+      if (stepIndex !== newStep) {
+        element.classList.toggle('-translate-x-8', stepIndex < newStep);
+        element.classList.toggle('translate-x-8', stepIndex > newStep);
+      }
+    });
+
+    // Atualiza textos
+    document.querySelectorAll('[id^="text-step-"]').forEach(element => {
+      const stepIndex = parseInt(element.getAttribute('data-step-index'));
+      
+      element.classList.toggle('opacity-100', stepIndex === newStep);
+      element.classList.toggle('translate-x-0', stepIndex === newStep);
+      element.classList.toggle('opacity-0', stepIndex !== newStep);
+      element.classList.toggle('translate-x-8', stepIndex !== newStep);
+      element.classList.toggle('absolute', stepIndex !== newStep);
+    });
+
+    activeStep = newStep;
+  }
+
+  // Função para lidar com o scroll
+  function handleScroll() {
+    if (isScrolling) return;
+    
+    const section = document.getElementById('growth-models-section');
+    if (!section) return;
+
+    const rect = section.getBoundingClientRect();
+    const scrollPosition = window.scrollY;
+    const sectionTop = section.offsetTop;
+    const sectionHeight = rect.height;
+    const viewportHeight = window.innerHeight;
+    
+    // Verifica se a seção está visível
+    if (scrollPosition >= sectionTop && scrollPosition <= sectionTop + sectionHeight - viewportHeight) {
+      const scrollProgress = (scrollPosition - sectionTop) / (sectionHeight - viewportHeight);
+      const newStep = Math.min(Math.floor(scrollProgress * stepCount), stepCount - 1);
+      
+      if (newStep !== activeStep) {
+        updateActiveStep(newStep);
+      }
+    }
+  }
+
+  // Debounce para o scroll
+  function debounceScroll() {
+    if (scrollTimeout) {
+      clearTimeout(scrollTimeout);
+    }
+    
+    scrollTimeout = setTimeout(() => {
+      handleScroll();
+      scrollTimeout = null;
+    }, 50);
+  }
+
+  // Inicialização
+  document.addEventListener('DOMContentLoaded', () => {
+    // Evento de scroll
+    window.addEventListener('scroll', debounceScroll, { passive: true });
+    
+    // Eventos dos botões do WhatsApp
+    document.querySelectorAll('[data-whatsapp-message]').forEach(button => {
+      button.addEventListener('click', () => {
+        const message = button.getAttribute('data-whatsapp-message');
+        window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(message)}`, '_blank');
+      });
+    });
+    
+    // Eventos dos indicadores de passo
+    document.querySelectorAll('[data-step-index]').forEach(indicator => {
+      if (indicator.classList.contains('w-2') || indicator.classList.contains('w-3')) {
+        indicator.addEventListener('click', () => {
+          const stepIndex = parseInt(indicator.getAttribute('data-step-index'));
+          isScrolling = true;
+          
+          const section = document.getElementById('growth-models-section');
+          const targetScroll = section.offsetTop + (stepIndex * stepHeight);
+          
+          window.scrollTo({
+            top: targetScroll,
+            behavior: 'smooth'
+          });
+          
+          setTimeout(() => {
+            isScrolling = false;
+          }, 1000);
+        });
+        
+        indicator.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const stepIndex = parseInt(indicator.getAttribute('data-step-index'));
+            updateActiveStep(stepIndex);
+          }
+        });
+      }
+    });
+    
+    // Verificação inicial
+    handleScroll();
+  });
+</script>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  button {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .transition-all {
+    transition-property: all;
+  }
+
+  .duration-300 {
+    transition-duration: 300ms;
+  }
+
+  .duration-500 {
+    transition-duration: 500ms;
+  }
+
+  .backdrop-blur-xl {
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+</style>

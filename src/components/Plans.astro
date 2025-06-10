@@ -1,0 +1,196 @@
+---
+// src/components/PlansSection.astro
+
+const plans = [
+  {
+    name: "Essencial",
+    description: "Para empreendedores que estão começando",
+    price: "R$ 297",
+    period: "/mês",
+    features: [
+      "Abertura de empresa completa",
+      "Emissão de notas fiscais",
+      "Compliance fiscal automatizado",
+      "Suporte via WhatsApp",
+      "Relatórios mensais"
+    ],
+    cta: "Começar agora",
+    popular: false,
+    color: "from-blue-500 to-blue-600"
+  },
+  {
+    name: "Crescimento",
+    description: "Para empresas que querem escalar",
+    price: "R$ 597",
+    period: "/mês",
+    features: [
+      "Tudo do plano Essencial",
+      "Mentoria estratégica mensal",
+      "Análise de mercado personalizada",
+      "Planejamento tributário avançado",
+      "BPO financeiro incluído",
+      "Certificado digital gratuito"
+    ],
+    cta: "Escolher este plano",
+    popular: true,
+    color: "from-orange-500 to-orange-600"
+  },
+  {
+    name: "Enterprise",
+    description: "Para empresas estabelecidas",
+    price: "Sob consulta",
+    period: "",
+    features: [
+      "Tudo do plano Crescimento",
+      "Mentoria semanal dedicada",
+      "Auditoria completa trimestral",
+      "Implementação de frameworks exclusivos",
+      "Consultoria para IPO/M&A",
+      "Suporte prioritário 24/7"
+    ],
+    cta: "Falar com especialista",
+    popular: false,
+    color: "from-purple-500 to-purple-600"
+  }
+];
+
+const handlePlanClick = (plan) => {
+  const message = `Olá! Tenho interesse no plano ${plan.name}. Gostaria de mais informações.`;
+  window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(message)}`, '_blank');
+};
+---
+
+<section id="planos" class="py-24 px-4 bg-slate-950 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-blue-950/30 via-transparent to-orange-950/30"></div>
+  
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-8">
+        <span class="bg-gradient-to-r from-white via-blue-200 to-orange-300 bg-clip-text text-transparent">
+          Escolha o plano ideal para sua empresa
+        </span>
+      </h2>
+      <p class="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+        Soluções completas que combinam <span class="font-semibold text-blue-400">tecnologia avançada</span> 
+        com <span class="font-semibold text-orange-400">mentoria estratégica</span> para o crescimento do seu negócio.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {plans.map((plan) => (
+        <div 
+          key={plan.name}
+          class={`relative group ${plan.popular ? 'transform scale-105' : ''}`}
+        >
+          <!-- Popular Badge -->
+          {plan.popular && (
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+              <div class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
+                <!-- Ícone de estrela SVG -->
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                </svg>
+                Mais Popular
+              </div>
+            </div>
+          )}
+
+          <!-- Glow Effect -->
+          <div class={`absolute inset-0 bg-gradient-to-r ${plan.color} opacity-0 group-hover:opacity-20 rounded-3xl blur-xl transition-all duration-500`}></div>
+          
+          <!-- Card -->
+          <div class={`relative bg-slate-900/80 backdrop-blur-xl border ${plan.popular ? 'border-orange-400/50' : 'border-slate-700/50'} rounded-3xl p-8 hover:bg-slate-800/80 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 shadow-2xl group-hover:shadow-xl h-full flex flex-col`}>
+            
+            <!-- Header -->
+            <div class="text-center mb-8">
+              <h3 class="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+              <p class="text-slate-400 mb-6">{plan.description}</p>
+              
+              <div class="flex items-baseline justify-center gap-2">
+                <span class={`text-4xl font-bold bg-gradient-to-r ${plan.color} bg-clip-text text-transparent`}>
+                  {plan.price}
+                </span>
+                {plan.period && (
+                  <span class="text-slate-400 text-lg">{plan.period}</span>
+                )}
+              </div>
+            </div>
+
+            <!-- Features -->
+            <div class="space-y-4 mb-8 flex-grow">
+              {plan.features.map((feature) => (
+                <div key={feature} class="flex items-center gap-3">
+                  <!-- Ícone de check SVG -->
+                  <svg class="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  <span class="text-slate-300">{feature}</span>
+                </div>
+              ))}
+            </div>
+
+            <!-- CTA Button -->
+            <button 
+              onClick={() => handlePlanClick(plan)}
+              class={`w-full bg-gradient-to-r ${plan.color} hover:shadow-lg text-white rounded-xl py-4 font-semibold hover-glow-orange text-lg flex justify-center items-center`}
+            >
+              {plan.cta}
+              <!-- Ícone de seta SVG -->
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="text-center mt-16">
+      <div class="bg-gradient-to-r from-slate-800/50 to-slate-700/50 backdrop-blur-xl border border-slate-600/50 rounded-3xl p-8 max-w-3xl mx-auto">
+        <h3 class="text-2xl font-bold text-white mb-4">
+          Não sabe qual plano escolher?
+        </h3>
+        <p class="text-slate-300 mb-6 text-lg">
+          Fale conosco e nossa equipe te ajudará a encontrar a solução perfeita para sua empresa.
+        </p>
+        <button 
+          onClick={() => window.open(`https://wa.me/5511999999999?text=${encodeURIComponent("Quero ajuda para escolher o melhor plano para minha empresa")}`, '_blank')}
+          class="bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500 hover:from-blue-600 hover:via-purple-600 hover:to-orange-600 text-white px-10 py-5 text-xl rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto"
+        >
+          <!-- Ícone de raio SVG -->
+          <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+          Falar com especialista
+          <!-- Ícone de seta SVG -->
+          <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  // Função para manipular cliques nos planos
+  function handlePlanClick(plan) {
+    const message = `Olá! Tenho interesse no plano ${plan.name}. Gostaria de mais informações.`;
+    window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(message)}`, '_blank');
+  }
+
+  // Adiciona event listeners após o carregamento do DOM
+  document.addEventListener('DOMContentLoaded', () => {
+    // Seleciona todos os botões de plano
+    const planButtons = document.querySelectorAll('[data-plan-button]');
+    
+    planButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const planName = button.getAttribute('data-plan-name');
+        const planDescription = button.getAttribute('data-plan-description');
+        handlePlanClick({ name: planName, description: planDescription });
+      });
+    });
+  });
+</script>
