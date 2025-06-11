@@ -1,0 +1,141 @@
+---
+// src/components/WhatsAppButton.astro
+const whatsappUrl = "https://api.whatsapp.com/send/?phone=5511999999999&text=Ol%C3%A1%21+Quero+conhecer+a+Tucont&type=phone_number&app_absent=0";
+---
+
+<!-- Componente Principal -->
+<div class="fixed bottom-6 right-6 z-50">
+  <!-- Tooltip (inicialmente oculto) -->
+  <div 
+    id="whatsapp-tooltip"
+    class="hidden fixed bottom-32 right-6 animate-fade-in"
+  >
+    <div class="bg-white rounded-2xl shadow-2xl p-4 max-w-xs relative">
+      <button
+        id="close-tooltip"
+        class="absolute -top-2 -right-2 w-6 h-6 bg-slate-400 rounded-full flex items-center justify-center text-white hover:bg-slate-500 transition-colors"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      
+      <div class="flex items-start gap-3">
+        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="font-semibold text-slate-900 text-sm mb-1">
+            Fale conosco agora!
+          </h4>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            Resolva sua demanda em minutos. Nossa equipe está online e pronta para ajudar.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Seta do tooltip -->
+      <div class="absolute bottom-[-8px] right-8 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white"></div>
+    </div>
+  </div>
+
+  <!-- Botão WhatsApp (inicialmente oculto) -->
+  <a
+    id="whatsapp-button"
+    href={whatsappUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="hidden w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl flex items-center justify-center transform hover:scale-110 transition-all duration-300 animate-bounce"
+    style="animation-iteration-count: 3; animation-delay: 1s"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    
+    <!-- Ponto de notificação -->
+    <div class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
+    
+    <!-- Efeito ripple -->
+    <div class="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-20"></div>
+  </a>
+</div>
+
+<!-- Script de funcionalidade -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const button = document.getElementById('whatsapp-button');
+    const tooltip = document.getElementById('whatsapp-tooltip');
+    const closeTooltip = document.getElementById('close-tooltip');
+
+    // Mostrar botão após 2 segundos
+    setTimeout(() => {
+      button.classList.remove('hidden');
+      
+      // Mostrar tooltip após 1 segundo do botão aparecer
+      setTimeout(() => {
+        tooltip.classList.remove('hidden');
+        
+        // Esconder tooltip após 5 segundos
+        setTimeout(() => {
+          tooltip.classList.add('hidden');
+        }, 5000);
+      }, 1000);
+    }, 2000);
+
+    // Fechar tooltip ao clicar no X
+    closeTooltip.addEventListener('click', (e) => {
+      e.preventDefault();
+      tooltip.classList.add('hidden');
+    });
+
+    // Adicionando console.log para debug
+    console.log('WhatsApp URL:', '${whatsappUrl}');
+  });
+</script>
+
+<!-- CSS das animações -->
+<style is:global>
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes ping {
+    0% { transform: scale(0.8); opacity: 0.8; }
+    70%, 100% { transform: scale(1.3); opacity: 0; }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .animate-bounce {
+    animation: bounce 0.5s ease-in-out;
+  }
+
+  .animate-ping {
+    animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  .animate-pulse {
+    animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  #whatsapp-button {
+    cursor: pointer;
+    text-decoration: none !important;
+  }
+</style>
