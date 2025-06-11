@@ -1,8 +1,6 @@
 ---
-// src/pages/solucoes.astro
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-//import WhatsAppButton from "/components/WhatsAppButton.astro";
 import Journey from "../components/userInterface/Journey.astro";
 
 // Definindo os SVGs dos ícones diretamente
@@ -99,8 +97,9 @@ const businessServices = [
       </div>
     </section>
 
-    <!-- Como funciona na prática -->
-     <Journey />
+    <!-- Jornada está em components/userInterface separei o componente para deixar o código limpo -->
+    <Journey />
+    
     <!-- Avenida Legal -->
     <section class="py-16 px-4">
       <div class="max-w-6xl mx-auto">
@@ -120,7 +119,6 @@ const businessServices = [
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {legalServices.map((service) => (
             <div 
-              key={service.title}
               class="bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 hover:bg-slate-800/80 transition-all duration-300 transform hover:scale-105"
             >
               <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center mb-4">
@@ -160,7 +158,6 @@ const businessServices = [
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {businessServices.map((service) => (
             <div 
-              key={service.title}
               class="bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 hover:bg-slate-800/80 transition-all duration-300 transform hover:scale-105"
             >
               <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-4">
@@ -192,12 +189,16 @@ const businessServices = [
             Fale conosco e descubra como a Tucont pode revolucionar seu negócio.
           </p>
           <button 
-            onclick="window.open('https://wa.me/5511999999999?text=Quero%20conhecer%20todas%20as%20solu%C3%A7%C3%B5es%20da%20Tucont', '_blank')"
-            class="bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500 hover:from-blue-600 hover:via-purple-600 hover:to-orange-600 text-white px-10 py-5 text-xl rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
+            onClick={() => window.open(`https://wa.me/5511999999999?text=${encodeURIComponent("Quero ajuda para escolher o melhor plano para minha empresa")}`, '_blank')}
+            class="bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500 hover:from-blue-600 hover:via-purple-600 hover:to-orange-600 text-white px-10 py-5 text-xl rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto"
           >
-            <span class="w-6 h-6 mr-3 inline" set:html={icons.Zap} />
+            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
             Falar com especialista
-            <span class="w-6 h-6 ml-3 inline" set:html={icons.ArrowRight} />
+            <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
           </button>
         </div>
       </div>

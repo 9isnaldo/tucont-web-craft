@@ -1,5 +1,4 @@
 ---
-// src/components/JourneySection.astro
 
 const journeySteps = [
   {
@@ -74,7 +73,7 @@ const openWhatsApp = () => {
 
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
       {journeySteps.map((step, index) => (
-        <div key={index} class={`group animate-fade-in ${step.delay}`}>
+        <div class={`group animate-fade-in ${step.delay}`}>
           <div class="relative">
             <!-- Connection Line -->
             {index < journeySteps.length - 1 && (

@@ -10,7 +10,7 @@ const businessSteps = [
   {
     id: 0,
     title: "Criar e Validar",
-    image: "/scrollingSession/41fcb3b9-a11b-4ca7-aac8-3e452f41999b.png",
+    image: "/src/images/scrollingSession/image1.png",
     text: "Transforme sua ideia em realidade. Validamos seu modelo de negócio, definimos a estrutura legal ideal e orientamos os primeiros passos para criar uma base sólida.",
     cta: "Começar minha jornada",
     whatsappMessage: "Quero ajuda com: Criar e Validar meu negócio"
@@ -18,7 +18,7 @@ const businessSteps = [
   {
     id: 1,
     title: "Regularizar",
-    image: "/scrollingSession/186878a1-99b4-4f84-877a-85bf6fb1e737.png",
+    image: "/src/images/scrollingSession/image2.png",
     text: "CNPJ em 24h com orientação completa. Cuidamos de toda burocracia legal, escolhemos o melhor enquadramento tributário e deixamos sua empresa 100% regularizada.",
     cta: "Regularizar agora",
     whatsappMessage: "Quero ajuda com: Regularizar minha empresa"
@@ -26,7 +26,7 @@ const businessSteps = [
   {
     id: 2,
     title: "Vender e Emitir Notas",
-    image: "/scrollingSession/f32255a9-8411-4496-88d0-12256b5cadb3.png",
+    image: "/src/images/scrollingSession/image3.png",
     text: "Plataforma completa para vendas e emissão automática de notas fiscais. Simplifique sua operação e foque no que realmente importa: crescer.",
     cta: "Automatizar vendas",
     whatsappMessage: "Quero ajuda com: Vender e Emitir Notas"
@@ -34,7 +34,7 @@ const businessSteps = [
   {
     id: 3,
     title: "Cuidar do Fisco",
-    image: "/scrollingSession/3cff2625-e342-4add-b38e-c92bcc0db520.png",
+    image: "/src/images/scrollingSession/image4.png",
     text: "Compliance fiscal automatizado com IA. Nossa tecnologia cuida de todas as obrigações fiscais, relatórios e deadlines para você dormir tranquilo.",
     cta: "Automatizar fisco",
     whatsappMessage: "Quero ajuda com: Cuidar do Fisco"
@@ -42,7 +42,7 @@ const businessSteps = [
   {
     id: 4,
     title: "Tracionar e Evoluir",
-    image: "/scrollingSession/05c65c48-85aa-4a2b-ad4b-75e4beea5a17.png",
+    image: "/src/images/scrollingSession/image5.png",
     text: "Plataforma de Jornada Empreendedora, Frameworks Validados para crescimento sustentável e Mentoria estratégica. Destravamos seu potencial empreendedor com orientação especializada.",
     cta: "Acelerar crescimento",
     whatsappMessage: "Quero ajuda com: Tracionar e Evoluir meu negócio"
@@ -74,7 +74,6 @@ const businessSteps = [
         <div class="relative h-80 md:h-96 order-2 lg:order-1">
           {businessSteps.map((step, index) => (
             <div
-              key={step.id}
               id={`step-${step.id}`}
               class={`absolute inset-0 transition-all duration-500 ease-out ${
                 index === 0 
@@ -109,7 +108,6 @@ const businessSteps = [
         <div class="space-y-8 relative order-1 lg:order-2">
           {businessSteps.map((step, index) => (
             <div
-              key={step.id}
               id={`text-step-${step.id}`}
               class={`transition-all duration-500 ease-out ${
                 index === 0 
@@ -139,7 +137,6 @@ const businessSteps = [
       <div class="flex justify-center mt-12 lg:mt-16 space-x-3">
         {businessSteps.map((step, index) => (
           <div
-            key={index}
             class={`w-2 h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
               index === 0 
                 ? 'bg-gradient-to-r from-blue-500 to-orange-500 scale-125' 
@@ -147,7 +144,7 @@ const businessSteps = [
             }`}
             data-step-index={index}
             role="button"
-            tabIndex={0}
+            tabindex={0}
             aria-label={`Ir para etapa ${index + 1}: ${step.title}`}
           />
         ))}
