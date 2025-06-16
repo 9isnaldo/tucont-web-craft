@@ -131,7 +131,7 @@ const handlePlanClick = (plan) => {
 
             <!-- CTA Button -->
             <button 
-              onClick={(WhatsAppButton) => handlePlanClick(plan)}
+              onclick={`window.open('https://wa.me/5511999999999?text=${encodeURIComponent(`Quero ajuda para escolher o melhor plano para minha empresa:`)}', '_blank')`}
               class={`w-full bg-gradient-to-r ${plan.color} hover:shadow-lg text-white rounded-xl py-4 font-semibold hover-glow-orange text-lg flex justify-center items-center`}
             >
               {plan.cta}
@@ -155,7 +155,7 @@ const handlePlanClick = (plan) => {
           Fale conosco e nossa equipe te ajudará a encontrar a solução perfeita para sua empresa.
         </p>
         <button 
-          onClick={(WhatsAppButton) => window.open(`https://wa.me/5511999999999?text=${encodeURIComponent("Quero ajuda para escolher o melhor plano para minha empresa")}`, '_blank')}
+          onclick={`window.open('https://wa.me/5511999999999?text=${encodeURIComponent(`Quero ajuda para escolher o melhor plano para minha empresa:`)}', '_blank')`}
           class="bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500 hover:from-blue-600 hover:via-purple-600 hover:to-orange-600 text-white px-10 py-5 text-xl rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto"
         >
           <!-- Ícone de raio SVG -->

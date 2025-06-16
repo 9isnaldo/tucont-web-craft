@@ -124,7 +124,7 @@ const openWhatsApp = (message) => {
           </ul>
 
           <button 
-            onclick={() => openWhatsApp('Quero conhecer a Avenida Empreendedora - jornada estratégica')}
+            onclick={`window.open('https://wa.me/5511999999999?text=${encodeURIComponent(`Quero conhecer a Avenida Empreendedora - jornada estratégica:`)}', '_blank')`}
             class="w-full flex items-center justify-center bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white rounded-xl py-4 font-semibold text-lg shadow-lg"
           >
             Ver soluções desta avenida
@@ -189,8 +189,8 @@ const openWhatsApp = (message) => {
             </li>
           </ul>
 
-          <button 
-            onclick={() => openWhatsApp('Quero conhecer a Avenida Legal - automação de obrigações')}
+          <button
+            onclick={`window.open('https://wa.me/5511999999999?text=${encodeURIComponent(`Quero conhecer a Avenida Legal:`)}', '_blank')`}
             class="w-full flex items-center justify-center bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-xl py-4 font-semibold text-lg"
           >
             Ver soluções desta avenida
@@ -210,8 +210,8 @@ const openWhatsApp = (message) => {
 
     {/* CTA Final */}
     <div class="text-center">
-      <button 
-        onclick={() => openWhatsApp('Quero as duas avenidas integradas')}
+      <button
+        onclick={`window.open('https://wa.me/5511999999999?text=${encodeURIComponent(`Quero as duas avenidas integradas:`)}', '_blank')`} 
         class="inline-flex items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500 hover:from-blue-600 hover:via-purple-600 hover:to-orange-600 text-white px-10 py-5 text-xl rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
       >
         Quero as duas avenidas integradas

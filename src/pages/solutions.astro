@@ -187,10 +187,10 @@ const businessServices = [
             Pronto para transformar sua empresa?
           </h3>
           <p class="text-slate-300 mb-6 text-lg">
-            Fale conosco e descubra como a Tucont pode revolucionar seu negócio.
+            Fale conosco e descubra como a Tucont pode revolucionar seu negócio. 
           </p>
           <button 
-            onClick={() => window.open(`https://wa.me/5511999999999?text=${encodeURIComponent("Quero ajuda para escolher o melhor plano para minha empresa")}`, '_blank')}
+            onclick={`window.open('https://wa.me/5511999999999?text=${encodeURIComponent(`Quero ajuda para escolher o melhor plano para minha empresa:`)}', '_blank')`}
             class="bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500 hover:from-blue-600 hover:via-purple-600 hover:to-orange-600 text-white px-10 py-5 text-xl rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center mx-auto"
           >
             <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
