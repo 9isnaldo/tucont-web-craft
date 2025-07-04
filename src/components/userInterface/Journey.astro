@@ -132,7 +132,7 @@ const openWhatsApp = () => {
           Fale com nossa IA agora e descubra como podemos revolucionar sua empresa em minutos.
         </p>
         <button 
-          onclick={openWhatsApp}
+          onclick={`window.open('https://wa.me/5511999999999?text=${encodeURIComponent(`Vamos escolher qual e malhor jornada para sua empresa:`)}', '_blank')`}
           class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-10 py-5 rounded-full font-semibold shadow-2xl transform hover:scale-105 transition-all duration-300 text-lg"
         >
           <i data-lucide="message-circle" class="w-6 h-6 mr-3 inline"></i>

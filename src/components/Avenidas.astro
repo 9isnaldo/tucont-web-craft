@@ -62,28 +62,26 @@ const openWhatsApp = (message) => {
 
     <div class="grid lg:grid-cols-2 gap-16 mb-16 relative">
       {/* Connecting Road Element */}
-      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 hidden lg:block">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 hidden lg:block">
         <div class="w-32 h-2 bg-gradient-to-r from-orange-500/30 via-yellow-400/50 to-blue-500/30 rounded-full blur-sm"></div>
         <div class="w-24 h-1 bg-gradient-to-r from-orange-400 via-yellow-300 to-blue-400 rounded-full mt-1 mx-auto"></div>
       </div>
 
-      {/* Avenida Empreendedora - Left side (start of journey) */}
-      <div class="group relative order-1">
-        {/* Rótulo da Avenida */}
-        <div class="absolute -top-3 left-6 z-10">
-          <div class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2 group-hover:from-yellow-400 group-hover:to-orange-500 group-hover:text-slate-900 transition-all duration-300">
-            <div class="w-4 h-4" set:html={icons.trendingUp} />
-            <span class="group-hover:hidden">Avenida Empreendedora</span>
-            <span class="hidden group-hover:block">Nosso Grande Diferencial</span>
-          </div>
-        </div>
-
-        <div class="absolute inset-0 bg-gradient-to-r from-orange-500/30 to-red-500/30 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-        <div class="relative bg-slate-900/80 backdrop-blur-xl border border-orange-400/50 rounded-3xl p-8 shadow-2xl hover:shadow-orange-500/30 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 h-full">
+      {/* Avenida Empreendedora */}
+      <div class="group relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+        <div class="relative bg-slate-900/80 backdrop-blur-xl border border-orange-400/50 rounded-3xl p-8 shadow-2xl hover:shadow-orange-500/30 transition-all duration-500 hover:scale-105 hover:-translate-y-2 h-full">
           
+          <div class="absolute -top-3 left-6">
+            <div class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
+              <div class="w-4 h-4" set:html={icons.trendingUp} />
+              Avenida Empreendedora
+            </div>
+          </div>
+
           <div class="flex items-center gap-4 mb-6 mt-4">
             <div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-              <div class="w-8 h-8 text-white" set:html={icons.trendingUp} />
+              <div class="w-8 h-8 text-white" set:html={icons.scale} />
             </div>
             <div>
               <h3 class="text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-300 bg-clip-text text-transparent">
@@ -123,9 +121,9 @@ const openWhatsApp = (message) => {
             </li>
           </ul>
 
-          <button 
-            onclick={`window.open('https://wa.me/5511999999999?text=${encodeURIComponent(`Quero conhecer a Avenida Empreendedora - jornada estratégica:`)}', '_blank')`}
-            class="w-full flex items-center justify-center bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white rounded-xl py-4 font-semibold text-lg shadow-lg"
+          <button
+            onclick={`openWhatsApp('Quero conhecer a Avenida Empreendedora:')`}
+            class="w-full flex items-center justify-center bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white rounded-xl py-4 font-semibold text-lg shadow-lg transition-colors duration-300"
           >
             Ver soluções desta avenida
             <div class="w-5 h-5 ml-2" set:html={icons.arrowRight} />
@@ -133,14 +131,13 @@ const openWhatsApp = (message) => {
         </div>
       </div>
 
-      {/* Avenida Legal - Right side (destination) */}
-      <div class="group relative order-2">
+      {/* Avenida Legal */}
+      <div class="group relative">
         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-        <div class="relative bg-slate-900/80 backdrop-blur-xl border border-blue-400/30 rounded-3xl p-8 shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 h-full">
+        <div class="relative bg-slate-900/80 backdrop-blur-xl border border-blue-400/30 rounded-3xl p-8 shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2 h-full">
           
-          {/* Rótulo da Avenida */}
-          <div class="absolute -top-3 left-6">
-            <div class="bg-gradient-to-r from-blue-500 to-cyan-400 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
+          <div class="absolute -top-3 left-6 items-center">
+            <div class="bg-gradient-to-r from-blue-500 to-cyan-400 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg flex gap-3">
               <div class="w-4 h-4" set:html={icons.shield} />
               Avenida Legal
             </div>
@@ -190,8 +187,8 @@ const openWhatsApp = (message) => {
           </ul>
 
           <button
-            onclick={`window.open('https://wa.me/5511999999999?text=${encodeURIComponent(`Quero conhecer a Avenida Legal:`)}', '_blank')`}
-            class="w-full flex items-center justify-center bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-xl py-4 font-semibold text-lg"
+            onclick={`openWhatsApp('Quero conhecer a Avenida Legal:')`}
+            class="w-full flex items-center justify-center bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-xl py-4 font-semibold text-lg transition-colors duration-300"
           >
             Ver soluções desta avenida
             <div class="w-5 h-5 ml-2" set:html={icons.arrowRight} />
@@ -200,7 +197,6 @@ const openWhatsApp = (message) => {
       </div>
     </div>
 
-    {/* Texto explicativo antes do CTA */}
     <div class="text-center mb-8">
       <p class="text-lg text-slate-300 max-w-4xl mx-auto leading-relaxed">
         Enquanto outros cuidam apenas do fisco, nós revolucionamos. 
@@ -208,11 +204,10 @@ const openWhatsApp = (message) => {
       </p>
     </div>
 
-    {/* CTA Final */}
     <div class="text-center">
       <button
-        onclick={`window.open('https://wa.me/5511999999999?text=${encodeURIComponent(`Quero as duas avenidas integradas:`)}', '_blank')`} 
-        class="inline-flex items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500 hover:from-blue-600 hover:via-purple-600 hover:to-orange-600 text-white px-10 py-5 text-xl rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
+        onclick={`openWhatsApp('Quero as duas avenidas integradas:')`} 
+        class="inline-flex items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500 hover:from-blue-600 hover:via-purple-600 hover:to-orange-600 text-white px-10 py-5 text-xl rounded-full shadow-2xl hover:scale-105 transition-all duration-300"
       >
         Quero as duas avenidas integradas
       </button>
@@ -221,58 +216,29 @@ const openWhatsApp = (message) => {
 </section>
 
 <style is:global>
-  /* Adicionando alguns estilos globais para garantir a consistência */
   .text-shadow-glow {
     text-shadow: 0 0 4px rgba(0, 204, 255, 0.4), 
                  0 0 8px rgba(94, 165, 255, 0.3);
   }
 
-  /* Estilos para os links/botões */
   button {
     cursor: pointer;
     transition: all 0.3s ease;
   }
 
-  /* Efeito de hover para os cards */
-  .group:hover .group-hover\:scale-110 {
-    transform: scale(1.1);
-  }
-
-  /* Efeitos de transição */
-  .transition-transform {
-    transition-property: transform;
-  }
-
-  .transition-all {
-    transition-property: all;
-  }
-
-  .duration-300 {
-    transition-duration: 300ms;
-  }
-
-  .duration-500 {
-    transition-duration: 500ms;
-  }
-
-  /* Efeito de backdrop blur */
   .backdrop-blur-xl {
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
   }
 
-  /* Ajustes para responsividade */
   @media (max-width: 768px) {
     .text-5xl {
       font-size: 2.5rem;
       line-height: 1.2;
     }
-
     .text-6xl {
       font-size: 3rem;
-      line-height: 1.2;
     }
-
     .py-24 {
       padding-top: 3rem;
       padding-bottom: 3rem;
@@ -281,18 +247,19 @@ const openWhatsApp = (message) => {
 </style>
 
 <script>
-  // Função para abrir WhatsApp (executada no client-side)
-  function openWhatsApp(message) {
+  // Função para abrir WhatsApp
+  function openWhatsApp(message: string) {
     window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(message)}`, '_blank');
   }
 
-  // Adiciona os event listeners após o carregamento da página
+  // Event listener com type casting apropriado
   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[data-whatsapp-message]').forEach(button => {
-      button.addEventListener('click', () => {
-        const message = button.getAttribute('data-whatsapp-message');
-        openWhatsApp(message);
-      });
+    const buttons = document.querySelectorAll<HTMLElement>('[onclick^="openWhatsApp"]');
+    buttons.forEach(button => {
+      const match = button.getAttribute('onclick')?.match(/'([^']+)'/);
+      if (match && match[1]) {
+        button.onclick = () => openWhatsApp(match[1]);
+      }
     });
   });
 </script>

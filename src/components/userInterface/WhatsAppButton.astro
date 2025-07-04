@@ -1,6 +1,6 @@
 ---
-// src/components/WhatsAppButton.astro
 const whatsappUrl = "https://api.whatsapp.com/send/?phone=5511999999999&text=Ol%C3%A1%21+Quero+conhecer+a+Tucont&type=phone_number&app_absent=0";
+import WhatsAppIcon from '../../images/icons/whatsApp.svg'
 ---
 
 <!-- Componente Principal -->
@@ -42,7 +42,7 @@ const whatsappUrl = "https://api.whatsapp.com/send/?phone=5511999999999&text=Ol%
     </div>
   </div>
 
-  <!-- Botão WhatsApp (inicialmente oculto) -->
+  <!-- Botão WhatsApp -->
   <a
     id="whatsapp-button"
     href={whatsappUrl}
@@ -51,9 +51,8 @@ const whatsappUrl = "https://api.whatsapp.com/send/?phone=5511999999999&text=Ol%
     class="hidden w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl flex items-center justify-center transform hover:scale-110 transition-all duration-300 animate-bounce"
     style="animation-iteration-count: 3; animation-delay: 1s"
   >
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-    </svg>
+    <!-- SVG Local -->
+    <WhatsAppIcon class="w-8 h-8 text-white" />
     
     <!-- Ponto de notificação -->
     <div class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
@@ -63,7 +62,6 @@ const whatsappUrl = "https://api.whatsapp.com/send/?phone=5511999999999&text=Ol%
   </a>
 </div>
 
-<!-- Script de funcionalidade -->
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
     const button = document.getElementById('whatsapp-button');

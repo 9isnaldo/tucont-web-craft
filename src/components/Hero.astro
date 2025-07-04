@@ -3,7 +3,8 @@
 import { Image } from 'astro:assets';
 ---
 
-<section class="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950/50 to-slate-900 relative overflow-hidden flex items-center">
+{/* Adicionado um ID ao wrapper para isolar o script e evitar conflitos */}
+<section id="hero-section-wrapper" class="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950/50 to-slate-900 relative overflow-hidden flex items-center">
   {/* Background effects */}
   <div class="absolute inset-0">
     <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -61,14 +62,16 @@ import { Image } from 'astro:assets';
                 class="w-full bg-transparent text-white placeholder:text-slate-400 text-lg focus:outline-none"
               />
             </div>
+            {/* ====== ALTERAÇÃO AQUI ====== */}
             <button 
               id="submitButton"
-              class="bg-gradient-to-r from-blue-500 to-orange-500 hover:from-blue-600 hover:to-orange-600 px-6 py-3 rounded-xl font-semibold text-white flex items-center gap-2"
+              class="bg-gradient-to-r from-blue-500 to-orange-500 hover:from-blue-600 hover:to-orange-600 px-6 py-3 rounded-xl font-semibold text-white flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled
             >
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
               </svg>
-              Resolver
+              <span>Resolver</span>
             </button>
           </div>
         </div>
@@ -103,36 +106,47 @@ import { Image } from 'astro:assets';
   </div>
 </section>
 
+{/* ====== ALTERAÇÃO AQUI ====== */}
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
-    const input = document.getElementById('aiInput');
-    const submitButton = document.getElementById('submitButton');
-    const aiResponseContainer = document.getElementById('aiResponseContainer');
-    const aiResponseText = document.getElementById('aiResponseText');
+    // Isolar o componente para evitar conflitos de ID
+    const wrapper = document.getElementById('hero-section-wrapper');
+    if (!wrapper) return;
+
+    // Selecionar elementos dentro do wrapper
+    const input = wrapper.querySelector('#aiInput');
+    const submitButton = wrapper.querySelector('#submitButton');
+    const submitButtonText = submitButton.querySelector('span'); // Selecionar o texto do botão
+    const submitButtonIcon = submitButton.querySelector('svg'); // Selecionar o icone do botão
+    const aiResponseContainer = wrapper.querySelector('#aiResponseContainer');
+    const aiResponseText = wrapper.querySelector('#aiResponseText');
     const thinkingDots = document.createElement('div');
     
     thinkingDots.className = 'flex items-center gap-2 text-slate-400';
     thinkingDots.innerHTML = `
       <div class="flex gap-1">
         <div class="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
-        <div class="w-2 h-2 bg-blue-400 rounded-full animate-bounce delay-100"></div>
-        <div class="w-2 h-2 bg-blue-400 rounded-full animate-bounce delay-200"></div>
+        <div class="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 100ms;"></div>
+        <div class="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 200ms;"></div>
       </div>
       Analisando sua demanda...
     `;
 
+    // Adicionar listener para habilitar/desabilitar o botão
+    input.addEventListener('input', () => {
+        submitButton.disabled = !input.value.trim();
+    });
+
     const handleInputSubmit = async () => {
-      if (!input.value.trim()) return;
+      if (!input.value.trim() || submitButton.disabled) return;
       
+      // Armazenar o ícone original para restaurá-lo depois
+      const originalIcon = submitButtonIcon.outerHTML;
+
       // Show loading state
-      submitButton.innerHTML = `
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-          </svg>
-          Pensando...
-        </div>
-      `;
+      const loadingIcon = `<svg class="w-5 h-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
+      submitButtonIcon.outerHTML = loadingIcon;
+      submitButtonText.textContent = 'Pensando...';
       submitButton.disabled = true;
       
       // Clear previous response and show container
@@ -152,15 +166,13 @@ import { Image } from 'astro:assets';
         aiResponseText.innerHTML = randomResponse;
         
         // Reset button
-        submitButton.innerHTML = `
-          <div class="flex items-center gap-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-            </svg>
-            Resolver
-          </div>
-        `;
-        submitButton.disabled = false;
+        // É preciso selecionar o ícone novamente, pois ele foi substituído
+        wrapper.querySelector('#submitButton svg').outerHTML = originalIcon;
+        wrapper.querySelector('#submitButton span').textContent = 'Resolver';
+        
+        // Reavalia se o botão deve estar ativo baseado no input
+        submitButton.disabled = !input.value.trim();
+
       }, 2000);
     };
 
@@ -168,6 +180,7 @@ import { Image } from 'astro:assets';
     
     input.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
+        e.preventDefault(); // Evita o comportamento padrão de formulário
         handleInputSubmit();
       }
     });
@@ -184,24 +197,33 @@ import { Image } from 'astro:assets';
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
   }
-  
-  .animate-pulse {
+
+  /* Usando um seletor mais específico para evitar conflitos */
+  #hero-section-wrapper .animate-pulse {
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
   
-  .animate-bounce {
+  #hero-section-wrapper .animate-bounce {
     animation: bounce 1s infinite;
   }
+
+  /* Animação de rotação para o ícone de carregamento */
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  #hero-section-wrapper .animate-spin {
+    animation: spin 1s linear infinite;
+  }
   
-  .delay-100 {
+  #hero-section-wrapper .delay-100 {
     animation-delay: 100ms;
   }
   
-  .delay-500 {
+  #hero-section-wrapper .delay-500 {
     animation-delay: 500ms;
   }
   
-  .delay-1000 {
+  #hero-section-wrapper .delay-1000 {
     animation-delay: 1000ms;
   }
 </style>
